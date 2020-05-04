@@ -20,10 +20,7 @@
 	-->
 	<style>
 		body{
-			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
-			background-repeat: no-repeat;
-			/* background-position: 50px; */
-			background-size:90vmin;
+			background-color:#fdfdfd;
 			height: 100vh;
 		}
 		.form-group{
@@ -53,6 +50,11 @@
 			}
 		.container{
 			/* height: 100vh; */
+			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
+			background-repeat: no-repeat;
+			background-position: 10px;
+			background-size:70vh;
+			
 			}
 		footer{
 			background-color: #34393d; 
