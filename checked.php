@@ -67,7 +67,7 @@ session_start();
 
         	<td>
             <?php
-            echo "Out of 5, You have attempt ".$checked_count." option."; ?>
+            echo "Out of 3, You have attempt ".$checked_count." option."; ?>
             </td>
         
           	
@@ -75,12 +75,12 @@ session_start();
             // Loop to store and display values of individual checked checkbox.
             $selected = $_POST['quizcheck'];
             
-            $q1= " select ans from questions ";
+            $q1= " select q_ans from questions ";
             $ansresults = mysqli_query($con,$q1);
             $i = 1;
             while($rows = mysqli_fetch_array($ansresults)) {
               // print_r($rows);
-            	$flag = $rows['ans'] == $selected[$i];
+            	$flag = $rows['q_ans'] == $selected[$i];
             	
             			if($flag){
             				// echo "correct ans is ".$rows['ans']."<br>";				
@@ -115,8 +115,8 @@ session_start();
             <?php 
 
             $name = $_SESSION['username'];
-            $finalresult = " insert into usersession(name,u_q_id, u_a_id) values ('$name','5','$Resultans') ";
-            $queryresult= mysqli_query($con,$finalresult); 
+            $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
+            mysqli_query($con,$finalresult); 
             // if($queryresult){
             // 	echo "successssss";
             // }

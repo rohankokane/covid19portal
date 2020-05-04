@@ -20,7 +20,10 @@
 	-->
 	<style>
 		body{
-			background-color:#fdfdfd;
+			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
+			background-repeat: no-repeat;
+			/* background-position: 50px; */
+			background-size:90vmin;
 			height: 100vh;
 		}
 		.form-group{
@@ -50,11 +53,6 @@
 			}
 		.container{
 			/* height: 100vh; */
-			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
-			background-repeat: no-repeat;
-			background-position: 10px;
-			background-size:70vh;
-			
 			}
 		footer{
 			background-color: #34393d; 
@@ -80,7 +78,7 @@
 		<img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png">
 		<!-- <div class="text-center"><h1>NSS-RAIT</h1></div> -->
 		<img src="https://scontent.fbom3-2.fna.fbcdn.net/v/t31.0-1/c83.132.827.828a/p960x960/1272985_154214051453958_1704561013_o.png?_nc_cat=103&_nc_sid=dbb9e7&_nc_ohc=6hOrwZcgrtUAX9e-czv&_nc_ht=scontent.fbom3-2.fna&oh=0f2a6df324153af2f8704efb6ba627d5&oe=5ED6F714" height="90vh" width="90vh"> 
-		<img src="hhttps://scontent.fbom3-2.fna.fbcdn.net/v/t1.0-9/21768343_1687172717991776_8162428222672887673_n.jpg?_nc_cat=107&_nc_sid=85a577&_nc_ohc=gYHfX3KKfwcAX8h2-Ol&_nc_ht=scontent.fbom3-2.fna&oh=4e5bce0416f5b282cb7420942f0695d9&oe=5ED582F5" height="90vh" width="90vh">
+		<img src="https://scontent.fbom3-2.fna.fbcdn.net/v/t1.0-9/21768343_1687172717991776_8162428222672887673_n.jpg?_nc_cat=107&_nc_sid=85a577&_nc_ohc=gYHfX3KKfwcAX8h2-Ol&_nc_ht=scontent.fbom3-2.fna&oh=4e5bce0416f5b282cb7420942f0695d9&oe=5ED582F5" height="90vh" width="90vh">
 	</header>
 	<div class="container">
 		<h1 class="text-center"> Welcome to Quiz on CoronaVirus 2020 </h1>
@@ -98,7 +96,7 @@
 						</div>
 						<div class="form-group">
 							<label for="email" > Email id: </label>
-							<input type="text" name="email" id="email" class="form-control" data-toggle="tooltip" title="You will receive the certificate via email">
+							<input type="email" name="email" id="email" class="form-control" data-toggle="tooltip" title="You will receive the certificate via email">
 						</div>
 						<div class="form-group">
 							<label for="contact"> Contact no: </label>
@@ -106,11 +104,11 @@
 						</div>
 						<div class="form-group">
 							<label for="college name"> College name: (if student)</label>
-							<input type="text" name="name" id="name" class="form-control">
+							<input type="text" name="clgname" id="clgname" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="age"> Age: </label>
-							<input type="text" name="name" id="name" class="form-control">
+							<input type="text" name="age" id="age" class="form-control">
 						</div>
 						<button class="btn btn-success d-block m-auto" type="submit"> Take the Quiz! </button>
 					</form>
