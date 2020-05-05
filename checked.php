@@ -23,7 +23,7 @@ session_start();
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <style type="text/css">
-	.animateuse{
+	/* .animateuse{
 			animation: leelaanimate 0.5s infinite;
 		}
 
@@ -36,18 +36,66 @@ session_start();
 			60% { color: orange },
 			80% {  color: black },
 			100% {  color: brown }
-		}
-</style>
+		} */
+    /* .wrapper {
+    display: grid;
+    grid-template-columns: 50vw 25vw 25vw;
+    padding:5px;
+    } */
+    .row{
+      display: flex;
+      width: 100vw;
+      background-color:#f5f5f5; 
+			padding: 15px;
+      margin: 0px;
+      height: 15vh;
+			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
+			/* justify-content: space-evenly; */
+    }
+    /* body{
+      height:100vh;
+      width: 100vw;
+      padding:0px;
+      margin:0px;
+    } */
+    .main{
+      height: 100vh;
+      /* width: 100vw; */
+      padding: 0%;
+      margin: 0%;
 
-   </head>
-   <body>
+    }
+    .site-header{
+			background-color:#f5f5f5; 
+			/* height: 15vh; */
+			padding: 10px;
+			display: flex;
+			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
+			justify-content: space-evenly;
+			/* align-items: center; */
+			}
+    .table-head{
+      background-color: #9f1c33;
+      color: #f5f5f5;
+    }
+
+</style>
+</head>
+<body>
+  <div class="main">
+    <header class="site-header">
+      <img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png" width="240vh">
+      <!-- <div class="text-center"><h1>NSS-RAIT</h1></div> -->
+      <img src="http://localhost/quiz/images/sow.png" width="90vh" style="margin-left:25px">
+      <div></div>
+      <img src="http://localhost/quiz/images/nss_logo.png" width="90vh">
+   </header>
+  
      <div class="container text-center" >
-     	<br><br>
-    	<h1 class="text-center text-success text-uppercase animateuse" > ThapaTechnical Quiz World</h1>
     	<br><br><br><br>
       <table class="table text-center table-bordered table-hover">
       	<tr>
-      		<th colspan="2" class="bg-dark"> <h1 class="text-white"> Results </h1></th>
+      		<th colspan="2" class="table-head"> <h1 class="text-white"> Results </h1></th>
       		
       	</tr>
       	<tr>
@@ -67,7 +115,7 @@ session_start();
 
         	<td>
             <?php
-            echo "Out of 5, You have attempt ".$checked_count." option."; ?>
+            echo "Out of 3, You have attempt ".$checked_count." option."; ?>
             </td>
         
           	
@@ -75,12 +123,12 @@ session_start();
             // Loop to store and display values of individual checked checkbox.
             $selected = $_POST['quizcheck'];
             
-            $q1= " select ans from questions ";
+            $q1= " select q_ans from questions ";
             $ansresults = mysqli_query($con,$q1);
             $i = 1;
             while($rows = mysqli_fetch_array($ansresults)) {
               // print_r($rows);
-            	$flag = $rows['ans'] == $selected[$i];
+            	$flag = $rows['q_ans'] == $selected[$i];
             	
             			if($flag){
             				// echo "correct ans is ".$rows['ans']."<br>";				
@@ -115,8 +163,8 @@ session_start();
             <?php 
 
             $name = $_SESSION['username'];
-            $finalresult = " insert into usersession(name,u_q_id, u_a_id) values ('$name','5','$Resultans') ";
-            $queryresult= mysqli_query($con,$finalresult); 
+            $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
+            mysqli_query($con,$finalresult); 
             // if($queryresult){
             // 	echo "successssss";
             // }
@@ -126,6 +174,7 @@ session_start();
       </table>
 
       	<a href="logout.php" class="btn btn-success"> LOGOUT </a>
+      </div>
       </div>
    </body>
 </html>

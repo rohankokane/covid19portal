@@ -8,7 +8,6 @@
 <html>
 <head>
 	<title></title>
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -20,10 +19,6 @@
 	-->
 	<style>
 		body{
-			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
-			background-repeat: no-repeat;
-			/* background-position: 50px; */
-			background-size:90vmin;
 			height: 100vh;
 		}
 		.form-group{
@@ -45,15 +40,20 @@
 			}
 		.site-header{
 			background-color:#f5f5f5; 
-			padding: 15px;
+			/* height: 15vh; */
+			padding: 10px;
 			display: flex;
 			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
 			justify-content: space-evenly;
 			/* align-items: center; */
 			}
 		.container{
-			/* height: 100vh; */
-			}
+			
+			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
+			background-repeat: no-repeat;
+			/* background-position: 50px; */
+			background-size:contain;	
+		}
 		footer{
 			background-color: #34393d; 
 			color : #aaaaaa;
@@ -68,6 +68,9 @@
 		#social-media{
 			background-color: #9f1c33;
 		}
+		img{
+			height:min-content;
+		}
 			
 	</style>
 
@@ -75,14 +78,15 @@
 <body>
 
 	<header class="site-header">
-		<img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png">
+		<img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png" width="240vh">
 		<!-- <div class="text-center"><h1>NSS-RAIT</h1></div> -->
-		<img src="https://scontent.fbom3-2.fna.fbcdn.net/v/t31.0-1/c83.132.827.828a/p960x960/1272985_154214051453958_1704561013_o.png?_nc_cat=103&_nc_sid=dbb9e7&_nc_ohc=6hOrwZcgrtUAX9e-czv&_nc_ht=scontent.fbom3-2.fna&oh=0f2a6df324153af2f8704efb6ba627d5&oe=5ED6F714" height="90vh" width="90vh"> 
-		<img src="hhttps://scontent.fbom3-2.fna.fbcdn.net/v/t1.0-9/21768343_1687172717991776_8162428222672887673_n.jpg?_nc_cat=107&_nc_sid=85a577&_nc_ohc=gYHfX3KKfwcAX8h2-Ol&_nc_ht=scontent.fbom3-2.fna&oh=4e5bce0416f5b282cb7420942f0695d9&oe=5ED582F5" height="90vh" width="90vh">
+		<img src="http://localhost/quiz/images/sow.png" width="90vh" style="margin-left:25px">
+		<div></div>
+		<img src="http://localhost/quiz/images/nss_logo.png" width="90vh">
 	</header>
 	<div class="container">
 		<h1 class="text-center"> Welcome to Quiz on CoronaVirus 2020 </h1>
-		<h5 class="text-center">This is small initiative taken up by NSS - RAIT under the awareness campaign against CoronaVirus 2020!</h5><br>
+		<h5 class="text-center">This is small initiative taken up by NSS-RAIT under the awareness campaign against Covid-19</h5><br>
 		<div class="row">
 			<div class="col-lg-3"></div>
 			<div class="col-lg-6">
@@ -92,11 +96,11 @@
 					<form action="register.php" method="post">
 						<div class="form-group">
 							<label for="user"> Name: </label>
-							<input type="text" name="name" id="name" class="form-control">
+							<input type="text" name="name" id="name" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label for="email" > Email id: </label>
-							<input type="text" name="email" id="email" class="form-control" data-toggle="tooltip" title="You will receive the certificate via email">
+							<input type="email" name="email" id="email" class="form-control" data-toggle="tooltip" title="You will receive the certificate via email" required>
 						</div>
 						<div class="form-group">
 							<label for="contact"> Contact no: </label>
@@ -104,11 +108,11 @@
 						</div>
 						<div class="form-group">
 							<label for="college name"> College name: (if student)</label>
-							<input type="text" name="name" id="name" class="form-control">
+							<input type="text" name="clgname" id="clgname" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label for="age"> Age: </label>
-							<input type="text" name="name" id="name" class="form-control">
+							<input type="text" name="age" id="age" class="form-control" required>
 						</div>
 						<button class="btn btn-success d-block m-auto" type="submit"> Take the Quiz! </button>
 					</form>
