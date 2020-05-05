@@ -15,22 +15,26 @@
       }
    
    ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Hello, world!</title>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+
+
+   <head>
+      <title></title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="
+         https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
       <style type="text/css">
+      @import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+      body{
+         font-family: "Montserrat";
+      }
       .card{
 			box-shadow:#4e0000 1px 1px 5px;
          padding: 10px;
@@ -39,12 +43,15 @@
 		}
 		.btn{
 			/* padding: 15px; */
+         position: absolute;
+         left: 45%;
 			background-color: #9F1C33;
 			color: rgb(240, 218, 218);
 			padding: 16px 40px;
 			border: none;
 			cursor:pointer;
 			margin-bottom: 10px;
+         
 			}
          .site-header{
 			background-color:#f5f5f5; 
@@ -63,6 +70,43 @@
 			/* background-position: 50px; */
 			background-size:contain;	
 		}
+      #box{
+         width: 500px;
+         height: 300px;
+         overflow: hidden;
+         background: #f1f1f1;
+         box-shadow: 0 0 20px black;
+         border-radius: 8px;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%,-50%);
+         z-index: 9999;
+         padding: 10px;
+         text-align: center;
+         display: none;
+      }
+      #box span{
+         color: #2ecc71;
+         font-size: 40px;
+         display: block;
+         margin: 20px 0;
+      }
+      #box h1{
+         color: #333;
+      }
+      .close{
+         position: absolute;
+         left: 40%;
+         top: 80%;
+         font-size: 18px;
+         color: white;
+         padding: 10px 20px;
+         cursor: pointer;
+         background: #3498db;
+         display: inline-block;
+         border-radius: 4px;
+      }
       </style>
    </head>
    <body>
@@ -84,7 +128,7 @@
             <!-- <div class="col-lg-8 d-block m-auto bg-light quizsetting "> -->
                   <p class="text-center" > <?php echo $_SESSION['username']; ?>, you have to select only one out of 4. Best of Luck </p>
                <br>
-               <form action="checked.php" method="post">
+               <form action="home.php" method="post">
                   <?php
                      for($i=1;$i<6;$i++){
                         $l = 1;
@@ -101,15 +145,21 @@
                               <br>
                               <!-- question print -->
                               <p><?php echo $i ." . ". $row1['question']; ?> </p>
+
+                                <!-- image: -->
+                                <div >
+                                    <?php echo '<img src="data:image;base64,'.base64_encode($row1['img']).' " alt="Image" style="width: 400px; height: 200px;"> '
+                                    ?>
+                                </div>
+
                               <?php
                               $sql = "SELECT * FROM `answers` WHERE `q_ans` = $i";
                               $result = mysqli_query($con, $sql);
                                  if (mysqli_num_rows($result) > 0) {
                                     while($row = mysqli_fetch_assoc($result)) {
                                     ?>	
-                                       <div class="card-options" style="background-color:rgba(255, 244, 228, 0.801)"><label>
+                                       <div class="card-options">
                                           <input type="radio" name="quizcheck[<?php echo $ansid; ?>]" id="<?php echo $ansid; ?>" value="<?php echo $row['aid']; ?>" > <?php echo $row['answer']; ?> 
-                                       </label>
                                           <br>
                                        </div>
                                     <!-- card-options end -->
@@ -123,11 +173,88 @@
                      } //for loop end
                                                    
                      ?>
-                  
-
+      
+      
                   <br>
-                  <input type="submit" name="submit" Value="Submit" class="btn btn-success m-auto d-block" /> <br>
+                  <!-- <input type="submit" name="submit" Value="Submit" class="btn btn-success m-auto d-block" /> -->
+                  <a onclick="pop()" href='#top'  class="btn btn-success m-auto d-block">Submit</a>
+                  <?php
+         $counter = 0;
+         $Resultans = 0;
+            if(isset($_POST['submit'])){
+            if(!empty($_POST['quizcheck'])) {
+            // Counting number of checked checkboxes.
+            $checked_count = count($_POST['quizcheck']);
+            // print_r($_POST);
+            ?>
+          	
+            <?php
+            // Loop to store and display values of individual checked checkbox.
+            $selected = $_POST['quizcheck'];
+            
+            $q1= " select q_ans from questions ";
+            $ansresults = mysqli_query($con,$q1);
+            $i = 1;
+            while($rows = mysqli_fetch_array($ansresults)) {
+              // print_r($rows);
+            	$flag = $rows['q_ans'] == $selected[$i];
+            	
+            			if($flag){
+            				// echo "correct ans is ".$rows['ans']."<br>";				
+            				$counter++;
+            				$Resultans++;
+            				// echo "Well Done! your ". $counter ." answer is correct <br><br>";
+            			}else{
+            				$counter++;
+            				// echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
+            			}					
+            		$i++;		
+            	}}}
+            	?>
+            
+            <?php 
+            echo $Resultans;
+            $name = $_SESSION['username'];
+            $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
+            mysqli_query($con,$finalresult); 
+            // if($queryresult){
+            // 	echo "successssss";
+            // }
+            ?>
+                  
+                  <div id="box">
+                  <span class="ion-android-happy"></span>
+                  <h1>Good Job!</h1>
+                  <?php
+                  echo "Your score is $Resultans Out of 20!";
+                  ?>
+
+                  <a onclick="window.location.href='home.php'" class="close">Close</a>
+                  </div>
+                  <script type= "text/javascript"> 
+                     var c=0;
+                     function pop(){
+                        if(c==0){
+                           document.getElementById("box").style.display= "block";
+                           c=1;
+                        }
+                        else{
+                           document.getElementById("box").style.display= "none";
+                           c=0;
+                        }
+                     } 
+                     </script>
+
                </form>
+
+
+                   
+
+
+
+
+
+
                <p id="letc"></p>
             </div>
             <br>
@@ -141,6 +268,3 @@
 
    </body>
 </html>
-
-
-
