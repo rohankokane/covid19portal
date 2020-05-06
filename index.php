@@ -98,7 +98,7 @@
 				<div class="card">
 					<h4 class="card-header text-center" style="background-color:#9f1c33; color: beige;"> Participant's Details </h4>
 					<br>
-					<form action="home.php" method="post">
+					<form action="register.php" method="post">
 						<div class="form-group">
 							<label for="name"> Name: </label>
 							<input type="text" name="name" id="name" class="form-control" required>
@@ -109,7 +109,7 @@
 						</div>
 						<div class="form-group">
 							<label for="contact"> Contact no: </label>
-							<input type="tel" name="contact" id="contact" class="form-control" autocorrect=off pattern="[6-9]{1}[0-9]{9}">
+							<input type="tel" name="contact" id="contact" class="form-control" autocorrect=off pattern="[6-9]{1}[0-9]{9}" >
 						</div>
 						<div class="form-group">
 							<label for="clgname"> College name: (if student)</label>
@@ -119,7 +119,7 @@
 							<label for="age"> Age: </label>
 							<input type="text" name="age" id="age" class="form-control" name="quantity" min="1" max="90">
 						</div>
-						<button class="btn btn-success d-block m-auto" type="submit"> Take the Quiz! </button>
+						<button class="btn btn-success d-block m-auto" type="submit"> Start </button>
 					</form>
 				
 				</div>

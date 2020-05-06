@@ -175,55 +175,55 @@ session_start();
 
 <?php
 
-session_start();
-if(!isset($_SESSION['username'])){
-header('location:login.php');
-}
+// session_start();
+// if(!isset($_SESSION['username'])){
+// // header('location:login.php');
+// }
 
- $con = mysqli_connect('localhost','root');
-    if($con){
-      echo"connection";
-    }
+//  $con = mysqli_connect('localhost','root');
+//     if($con){
+//       echo"connection";
+//     }
    
-    mysqli_select_db($con,'quizdatabases');
+//     mysqli_select_db($con,'quizdatabases');
 
 
-    if(isset($_POST['submit'])){
+//     if(isset($_POST['submit'])){
 
-      if(!empty($_POST['quizcheck'])){
+//       if(!empty($_POST['quizcheck'])){
 
-        $count = count($_POST['quizcheck']);
-          echo "you count is". $count;
+//         $count = count($_POST['quizcheck']);
+//           echo "you count is". $count;
 
-          $selected = $_POST['quizcheck'];
-          print_r($selected);
+//           $selected = $_POST['quizcheck'];
+//           print_r($selected);
 
-          $q = " select * from question ";
-          $query = mysqli_query($con,$q);
+//           $q = " select * from question ";
+//           $query = mysqli_query($con,$q);
 
-          $result = 0;
-          $i = 1;
-          while ( $rows = mysqli_fetch_array($query)) {
+//           $result = 0;
+//           $i = 1;
+//           while ( $rows = mysqli_fetch_array($query)) {
             
-              print_r($rows['ans_id']);
+//               print_r($rows['ans_id']);
 
-              $stored  = $rows['ans_id'] == $selected[$i];
+//               $stored  = $rows['ans_id'] == $selected[$i];
 
-              if($stored){
+//               if($stored){
 
-                $result++;
+//                 $result++;
 
-              }
+//               }
 
-              $i++;
+//               $i++;
 
-          }
+//           }
 
-          echo $result;
+//           echo $result;
 
-      }
+//       }
 
-    }
+//     }
 
 
 ?> -->
