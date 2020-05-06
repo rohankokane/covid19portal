@@ -98,9 +98,9 @@
 				<div class="card">
 					<h4 class="card-header text-center" style="background-color:#9f1c33; color: beige;"> Participant's Details </h4>
 					<br>
-					<form action="register.php" method="post">
+					<form action="home.php" method="post">
 						<div class="form-group">
-							<label for="user"> Name: </label>
+							<label for="name"> Name: </label>
 							<input type="text" name="name" id="name" class="form-control" required>
 						</div>
 						<div class="form-group">
@@ -109,10 +109,10 @@
 						</div>
 						<div class="form-group">
 							<label for="contact"> Contact no: </label>
-							<input type="text" name="contact" id="contact" class="form-control" autocorrect=off pattern="[6-9]{1}[0-9]{9}">
+							<input type="tel" name="contact" id="contact" class="form-control" autocorrect=off pattern="[6-9]{1}[0-9]{9}">
 						</div>
 						<div class="form-group">
-							<label for="college name"> College name: (if student)</label>
+							<label for="clgname"> College name: (if student)</label>
 							<input type="text" name="clgname" id="clgname" class="form-control" required>
 						</div>
 						<div class="form-group">

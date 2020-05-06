@@ -4,7 +4,7 @@
 		<link rel="stylesheet" href="assets/default.css" />
 		<link rel="stylesheet" href="assets/component.css" />
 		<script src="assets/modernizr.custom.js"></script>
-	</hea>
+	</head>
 	<body>
 		<div class="container">
 			<header class="clearfix">
@@ -21,7 +21,7 @@
 			<div class="main">
 				<ul id="og-grid" class="og-grid">
                     <?php
-                    $conn = mysqli_connect("localhost", "root", "", "tutorials");
+                    $conn = mysqli_connect("localhost", "root", "", "quizdb");
                     $sql = "SELECT * FROM images";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_object($result)) {
