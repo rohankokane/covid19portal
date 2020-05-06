@@ -27,6 +27,15 @@
 			}
     .main{
         padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .vid{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-evenly;
+        flex-wrap: wrap;
     }
 
 
@@ -43,29 +52,32 @@
      </header>
     <br>
     <div class="main">
-    <h2>Thank you for participating!</h2>
-    <p>This is a small initiative under the Awareness campaign against CoronaVirus (Covid-19) pandemic started by NSS unit of Ramrao adik institute of technology.
-    Here are the glimpse of some of the activities condcuted by NSS-RAIT during this lockdown period.</p>
-<br>
-    YouTUBE video:
-<br>
-    slideshow posters:
-    <p>
-    In this difficult time we are doing all we can to serve the nation. As our respected prime minister mentioned national service scheme volunteers to come forward and contribute in this fight against the pandemic.
-    If you or your unit is also conducting any such activities we invite you all to post your work for on this wall...
-    </p>
+        <div class="content">
+        <h2>Thank you for participating!</h2>
+        <p>This is a small initiative under the Awareness campaign against CoronaVirus (Covid-19) pandemic started by NSS unit of Ramrao adik institute of technology.
+        Here are the glimpse of some of the activities condcuted by NSS-RAIT during this lockdown period.</p>
+    <br>
+        <div class="vid">
+        <iframe width="400" height="250" src="https://www.youtube.com/embed/p2H31SJ3Fg0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+        <iframe width="400" height="250" src="https://www.youtube.com/embed/knGTkX-S6dw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p>
+        In this difficult time we are doing all we can to serve the nation. As our respected prime minister mentioned national service scheme volunteers to come forward and contribute in this fight against the pandemic.
+        If you or your unit is also conducting any such activities we invite you all to post your work for on this wall...
+        </p>
+        </div>
     <script>
     function add_post($userid,$body){
     $sql = "insert into posts (user_id, body, stamp) 
             values ($userid, '". mysql_real_escape_string($body). "',now())";
- 
     $result = mysql_query($sql);
     }
     </script>
     <?php
-
 $_SESSION['userid'] = 1;
 ?>
+
 <?php
 if (isset($_SESSION['message'])){
     echo "<b>". $_SESSION['message']."</b>";
