@@ -1,3 +1,10 @@
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+</HEAD>
+<BODY onload="noBack();" 
+    onpageshow="if (event.persisted) noBack();">
 <?php
 session_start();
    $con = mysqli_connect('localhost','root');
@@ -68,12 +75,28 @@ session_start();
             <?php 
             // echo $Resultans;
             $name = $_SESSION['username'];
-            $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
-            $queryresult=mysqli_query($con,$finalresult); 
-            if($queryresult){
-            	// echo "successssss";
-                // echo "$Resultans";
-                }
+            $email = $_SESSION['email'];
+                    
+                    $sql5 = "SELECT `user_id` FROM `user` WHERE `email` = '$email' ";
+                
+                    $res = mysqli_query($conn, $sql5);
+                    //echo mysqli_num_rows($res); 
+
+                    if (mysqli_num_rows($res) > 0) {
+                        // output data of each row
+                        while($row = mysqli_fetch_assoc($res)) {
+                        // echo "id: " . $row["user_id"];
+                        $user_id = $row["user_id"];
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    // echo "user_id :::: $user_id";
+                    $finalresult = " insert into score(name,sc,user_id) values ('$name','$Resultans','$user_id') ";
+                    $queryresult= mysqli_query($conn,$finalresult); 
+                    // if($queryresult){
+                    // 	echo "successssss";
+                    // }
             ?>
 <html>
 <head>
@@ -257,7 +280,7 @@ $(document).ready(function(){
         .button {
         /* display: inline-block; */
         border-radius: 4px;
-        background-color: #f4511e;
+        background-color: #9f1c33;
         border: none;
         color: #FFFFFF;
         text-align: center;
@@ -268,7 +291,7 @@ $(document).ready(function(){
         transition: all 0.5s;
         cursor:pointer;
         margin: 5px;
-        box-shadow:inset 0 -0.4em 0 -0.35em rgba(0,0,0,0.17);
+        box-shadow:inset 0 -0.4em 0 -0.20em rgba(0,0,0,0.17);
         }
 
         .button span {
@@ -331,7 +354,7 @@ $(document).ready(function(){
             </div>
             <div class="close-btn">
                 <!-- <button onclick="nopop(),'certi.php'"; name="Download"  type="submit" class="button"><span> Download </span></button></div> -->
-                <a onclick="nopop();" href="#" >Download Certificate</a>
+                <a onclick="nopop();" href="certi.php" >Download Certificate</a>
             </div>click the above button to Download your certificate!
         </div>
     </div>    
@@ -357,7 +380,8 @@ $(document).ready(function(){
             <div class="wall">
 			<header class="clearfix">
                 
-			<h1><b>NSS Wall</b></h1>
+            <h1 class="text-center"><b>NSS Wall</b></h1>
+            
 			</header>
 			<div class="main">
 				<ul id="og-grid" class="og-grid">
@@ -403,7 +427,7 @@ $(document).ready(function(){
                         <textarea name="description" class="form-control"></textarea>
                     </div>
                     <div class="form-group" id="file">
-                        <label class="text-center" style="">Choose pictures to upload<div></div><i class="fa fa-upload" style="font-size:24px"></i>
+                        <label class="text-center">Choose pictures to upload<div></div><i class="fa fa-upload" style="font-size:24px"></i>
                         <input type="file" name="image[]" multiple accept="image/*" class="form-control" required /></label>
                     </div>
                     <!-- <label class="text-center"> -->

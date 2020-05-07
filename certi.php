@@ -44,39 +44,10 @@
                 <!--for user_id in database     
                       <?php
 
-                    $name = $_SESSION['username'];
-                    $email = $_SESSION['email'];
-                    
-                    $sql5 = "SELECT `user_id` FROM `user` WHERE `email` = '$email' ";
-                
-                    $res = mysqli_query($conn, $sql5);
-                    //echo mysqli_num_rows($res); 
-
-                    if (mysqli_num_rows($res) > 0) {
-                        // output data of each row
-                        while($row = mysqli_fetch_assoc($res)) {
-                        // echo "id: " . $row["user_id"];
-                        $user_id = $row["user_id"];
-                        }
-                    } else {
-                        echo "0 results";
-                    }
-                    // echo "user_id :::: $user_id";
-                    $finalresult = " insert into score(name,sc,user_id) values ('$name','$Resultans','$user_id') ";
-                    $queryresult= mysqli_query($conn,$finalresult); 
-                    // if($queryresult){
-                    // 	echo "successssss";
-                    // }
                 ?> -->
 
 
 
 
 <!--   for back button
-                    <SCRIPT type="text/javascript">
-                        window.history.forward();
-                        function noBack() { window.history.forward(); }
-                    </SCRIPT>
-                    </HEAD>
-                    <BODY onload="noBack();" 
-                        onpageshow="if (event.persisted) noBack();"> -->
+                     -->
