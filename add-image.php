@@ -7,11 +7,11 @@
     onpageshow="if (event.persisted) noBack();">
 <?php
 session_start();
-   $con = mysqli_connect('localhost','root');
-   	// if($con){
+   $conn = mysqli_connect('localhost','root');
+   	// if($conn){
    	// 	echo"connection";
    	// }
-   	mysqli_select_db($con,'quizdb');
+   	mysqli_select_db($conn,'quizdb');
    ?>
 <?php
     $message = "";
@@ -53,7 +53,7 @@ session_start();
             $selected = $_POST['quizcheck'];
             
             $q1= " select q_ans from questions ";
-            $ansresults = mysqli_query($con,$q1);
+            $ansresults = mysqli_query($conn,$q1);
             $i = 1;
             while($rows = mysqli_fetch_array($ansresults)) {
               // print_r($rows);
