@@ -26,6 +26,15 @@
 		body{
 			height: 100vh;
 		}
+		.site-header{
+			background-color:#f5f5f5; 
+			/* height: 15vh; */
+			padding: 10px;
+			display: flex;
+			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
+			justify-content: space-evenly;
+			/* align-items: center; */
+			}
 		.form-group{
 			margin-left: 20px;
 			margin-right: 20px;
@@ -43,15 +52,7 @@
 			cursor: pointer;
 			margin-bottom: 10px;
 			}
-		.site-header{
-			background-color:#f5f5f5; 
-			/* height: 15vh; */
-			padding: 10px;
-			display: flex;
-			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
-			justify-content: space-evenly;
-			/* align-items: center; */
-			}
+		
 		.container{
 			
 			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);

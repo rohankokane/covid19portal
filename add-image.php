@@ -28,7 +28,7 @@ session_start();
 	        mysqli_query($conn, $sql);
 	        move_uploaded_file($tmp_name, $file_path);
         }
-        $message = "Image has been uploaded";
+        $message = "Post has been uploaded";
     }
 ?>
 <?php
@@ -75,7 +75,6 @@ session_start();
                 // echo "$Resultans";
                 }
             ?>
-
 <html>
 <head>
         <!-- Required meta tags -->
@@ -83,13 +82,12 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
         <title>Google Image | Add</title>
-        
         <link rel="stylesheet" href="assets/default.css" />
 		<link rel="stylesheet" href="assets/component.css" />
-		<script src="assets/modernizr.custom.js"></script>
-
+        <script src="assets/modernizr.custom.js"></script>
+        <!-- icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="assets/bootstrap.css" />
         <script src="assets/jquery-1.11.3.min.js"></script>
         <script src="assets/bootstrap.js"></script>
@@ -105,7 +103,7 @@ $(document).ready(function(){
         // alert("Your score is"+result+" !");
         document.getElementById("box").style.display= "block";
         // document.getElementsByTagName("body").style.filter="blur(12px)";
-        document.getElementById("toblur").style.filter = "blur(12px)";
+        document.getElementById("toblur").style.filter = "blur(10px)";
         // document.getElementsByTagName("BODY")[0].style.filter = "blur(12px)";
     }
     function nopop(){
@@ -116,6 +114,12 @@ $(document).ready(function(){
           
         <style>
         @import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+        body{
+        /* display: flex;
+        flex-direction: column;
+        justify-content: space-between; */
+        height: 100vh;
+        }
         /* score dialouge box*/
         #box{
         width: 80vw;
@@ -142,7 +146,7 @@ $(document).ready(function(){
         #box h1{
         color: #333;
         }
-        .close{
+        .close-btn{
         /* position: absolute; */
         /* left: 40%; */
         /* top: 80%; */
@@ -156,22 +160,24 @@ $(document).ready(function(){
         align-self: center;
         width: min-content;
         }
-        body{
+        .site-header{
+			background-color:#f5f5f5; 
+			/* height: 15vh; */
+			padding: 10px;
+			display: flex;
+			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
+			justify-content: space-evenly;
+			/* align-items: center; */
+            }
+            
+        /* .container-main{
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        height: 100vh;
-        }
-        .site-header{
-        background-color:#f5f5f5; 
-        /* height: 15vh; */
-        padding: 10px;
-        display: flex;
-        flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
-        justify-content: space-evenly;
-        /* align-items: center; */
-        }
+        justify-content: center;
+        
+        } */
         .container-main{
+        /* padding: 15px; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -180,6 +186,9 @@ $(document).ready(function(){
         /* background-position: 50px; */
         background-size:contain;	
         padding: 0px;
+        }
+        .content{
+            padding: 10vw;
         }
         footer{
         background-color: #34393d; 
@@ -204,19 +213,33 @@ $(document).ready(function(){
         opacity: 0;
         position: fixed;
         width: 0;
+        transition: all 0.5s;
         }
         #file label {
         display: flex;
-        flex-direction: column;
-        justify-content: start;
-        background-color: #44c0fe;
-        padding: 5px 10px;
+        flex-direction: row;
+        justify-content:space-around;
+        /* background-image: -webkit-linear-gradient(); */
+        background-image: -webkit-linear-gradient(left, #39ade7, #2079b0);
+        /* background-color: #44c0fe; */
+        padding: 10px 10px;
         /* font-family: sans-serif, Arial; */
         font-size: 16px;
-        color:aliceblue;
+        color:rgb(249, 252, 255);
         border: 1px solid rgb(182, 182, 182);
         border-radius: 4px;
+        transition: all 0.5s;
+
         /* width:80vw; */
+        }
+        #file:active{
+        /* background-color: #3e8e41; */
+        /* box-shadow: 0 5px #666; */
+        transform: translateY(4px);
+        background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d);
+        }
+        #filelabel::after{
+            background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d);
         }
         .box-content{
         display: flex;
@@ -224,22 +247,79 @@ $(document).ready(function(){
         justify-content:space-around;
         height:inherit;
         }
-        .container-main{
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        }
+       
         .vid{
         display: flex;
         flex-direction: row;
         justify-content:space-evenly;
         flex-wrap: wrap;
         }
+        .button {
+        /* display: inline-block; */
+        border-radius: 4px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 28px;
+        padding: 10px;
+        width: 50vw;
+        max-width: 120px;
+        transition: all 0.5s;
+        cursor:pointer;
+        margin: 5px;
+        box-shadow:inset 0 -0.4em 0 -0.35em rgba(0,0,0,0.17);
+        }
+
+        .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+        }
+
+        .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+        }
+
+        .button:hover span {
+        padding-right: 25px;
+        }
+
+        .button:hover span:after {
+        opacity: 1;
+        right: 0;
+        }
+        .button:active {
+        /* background-color: #3e8e41; */
+        /* box-shadow: 0 5px #666; */
+        transform: translateY(4px);
+        }
+        a {text-decoration: none;}
+
+
+/* .button:active span:after {
+    transform: scale(0.99);
+}
+.button:active{
+ top:0.2em;
+} */
         </style>
 </head>
 
 <body>
+    <header class="site-header">
+        <img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png" width="240vh">
+        <!-- <div class="text-center"><h1>NSS-RAIT</h1></div> -->
+        <img src="http://localhost/quiz/images/sow.png"  width="90vh" style="margin-left:25px">
+        <div></div>
+        <img src="http://localhost/quiz/images/nss_logo.png" width="90vh">
+     </header>
     <div id="box" >
         <div class="box-content">
             <div>
@@ -249,20 +329,13 @@ $(document).ready(function(){
                 echo "Your score is $Resultans Out of 20!";
                 ?>
             </div>
-            <div class="close">
-                <a onclick="nopop();" >Close</a>
-            </div>
+            <div class="close-btn">
+                <!-- <button onclick="nopop(),'certi.php'"; name="Download"  type="submit" class="button"><span> Download </span></button></div> -->
+                <a onclick="nopop();" href="#" >Download Certificate</a>
+            </div>click the above button to Download your certificate!
         </div>
     </div>    
 <div class="toblur" id="toblur">        
-
-<header class="site-header">
-         <img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png" width="240vh">
-         <!-- <div class="text-center"><h1>NSS-RAIT</h1></div> -->
-         <img src="http://localhost/quiz/images/sow.png" height="90vh" width="90vh" style="margin-left:25px">
-         <div></div>
-         <img src="http://localhost/quiz/images/nss_logo.png" height="90vh" width="90vh">
-      </header>
 <div class="container-main">
     <div class="content">
         <h2>Thank you for participating!</h2>
@@ -279,7 +352,7 @@ $(document).ready(function(){
         If you or your unit is also conducting any such activities we invite you all to post your work for on this wall...
         </p>
     </div>
-</div>
+
     <div class="container">
             <div class="wall">
 			<header class="clearfix">
@@ -312,7 +385,7 @@ $(document).ready(function(){
 			});
 		</script>
         </div>
-        <div class="row" style="padding: 10px;">
+        <div class="row" style="padding: 10px; font-family: 'Segoe UI';">
             <div class="col-md-offset-3 col-md-6">
                 <h1>Upload posts</h1>
                 <?php if (!empty($message)) { ?>
@@ -330,10 +403,14 @@ $(document).ready(function(){
                         <textarea name="description" class="form-control"></textarea>
                     </div>
                     <div class="form-group" id="file">
-                        <label>Choose file
+                        <label class="text-center" style="">Choose pictures to upload<div></div><i class="fa fa-upload" style="font-size:24px"></i>
                         <input type="file" name="image[]" multiple accept="image/*" class="form-control" required /></label>
                     </div>
-                    <input type="submit" name="submit" value="Post" class="btn btn-success" />
+                    <!-- <label class="text-center"> -->
+                        <!-- <button name="submit" type="submit" value="Post" class="button6"> Post </button> -->
+                        <!-- <button class="button" style="vertical-align:middle"><span>Hover </span></button> -->
+                        <div class="text-center"><button name="submit" value="Post" type="submit" class="button"><span> Post </span></button></div>
+                    <!-- <input type="submit" name="submit" value="Post" class="btn btn-success" />     -->
                     <!-- <a href="index.php" class="btn btn-success">See Images</a> -->
                 </form>
             </div>
@@ -357,5 +434,6 @@ $(document).ready(function(){
 			</div>
 		</div>	
     </footer>
+
 </div> </body>
 </html>
