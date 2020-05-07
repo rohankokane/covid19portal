@@ -1,6 +1,5 @@
 <?php
 session_start();
-
    $con = mysqli_connect('localhost','root');
    	// if($con){
    	// 	echo"connection";
@@ -94,6 +93,7 @@ session_start();
         <link rel="stylesheet" href="assets/bootstrap.css" />
         <script src="assets/jquery-1.11.3.min.js"></script>
         <script src="assets/bootstrap.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
         <script>
 $(document).ready(function(){
    setTimeout(function(){
@@ -115,102 +115,145 @@ $(document).ready(function(){
     </script>
           
         <style>
-             @import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
-                  /* score dialouge */
+        @import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+        /* score dialouge box*/
         #box{
-         width: 80vw;
-         height: 50vh;
-         overflow: hidden;
-         background: #f1f1f1;
-         box-shadow: 0 0 20px black;
-         border-radius: 8px;
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%,-50%);
-         z-index: 9999;
-         padding: 10px;
-         text-align: center;
-         display: none;
-
-      }
-      #box span{
-         color: #2ecc71;
-         font-size: 40px;
-         display: block;
-         margin: 20px 0;
-      }
-      #box h1{
-         color: #333;
-      }
-      .close{
-         position: absolute;
-         left: 40%;
-         top: 80%;
-         font-size: 18px;
-         color: white;
-         padding: 10px 20px;
-         cursor: pointer;
-         background: #3498db;
-         display: inline-block;
-         border-radius: 4px;
-      }
-     body{
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100vh;
-            }
-            .site-header{
-			background-color:#f5f5f5; 
-			/* height: 15vh; */
-			padding: 10px;
-			display: flex;
-			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
-			justify-content: space-evenly;
-			/* align-items: center; */
-			}
-		.container-main{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
-			background-repeat: no-repeat;
-			/* background-position: 50px; */
-            background-size:contain;	
-            padding: 0px;
-		}
-		footer{
-			background-color: #34393d; 
-			color : #aaaaaa;
-			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-			/* height: 15vh; */
-			padding: 15px;
-			/* display: flex; */
-			/* flex-direction: row; */
-			/* justify-content: center; */
-			/* align-items: center; */
-			}
-            #social-media{
-			background-color: #9f1c33;
+        width: 80vw;
+        height: 50vh;
+        overflow: hidden;
+        background: #f1f1f1;
+        box-shadow: 0 0 20px black;
+        border-radius: 8px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 9999;
+        padding: 10px;
+        text-align: center;
+        display: none;
+        }
+        #box span{
+        color: #2ecc71;
+        font-size: 40px;
+        display: block;
+        margin: 20px 0;
+        }
+        #box h1{
+        color: #333;
+        }
+        .close{
+        /* position: absolute; */
+        /* left: 40%; */
+        /* top: 80%; */
+        font-size: 18px;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        background: #3498db;
+        /* display: inline-block; */
+        border-radius: 4px;
+        align-self: center;
+        width: min-content;
+        }
+        body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        }
+        .site-header{
+        background-color:#f5f5f5; 
+        /* height: 15vh; */
+        padding: 10px;
+        display: flex;
+        flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
+        justify-content: space-evenly;
+        /* align-items: center; */
+        }
+        .container-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
+        background-repeat: no-repeat;
+        /* background-position: 50px; */
+        background-size:contain;	
+        padding: 0px;
+        }
+        footer{
+        background-color: #34393d; 
+        color : #aaaaaa;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        /* height: 15vh; */
+        padding: 15px;
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        }
+        #social-media{
+        background-color: #9f1c33;
         }
         .ele{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         }
-            </style>
+        #file input[type="file"] {
+        opacity: 0;
+        position: fixed;
+        width: 0;
+        }
+        #file label {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        background-color: #44c0fe;
+        padding: 5px 10px;
+        /* font-family: sans-serif, Arial; */
+        font-size: 16px;
+        color:aliceblue;
+        border: 1px solid rgb(182, 182, 182);
+        border-radius: 4px;
+        /* width:80vw; */
+        }
+        .box-content{
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        height:inherit;
+        }
+        .container-main{
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        }
+        .vid{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-evenly;
+        flex-wrap: wrap;
+        }
+        </style>
 </head>
 
 <body>
     <div id="box" >
-        <span class="ion-android-happy"></span>
-        <h1>Good Job!</h1>
-        <?php
-        echo "Your score is $Resultans Out of 20!";
-        ?>
-        <a onclick="nopop();" class="close">Close</a>
+        <div class="box-content">
+            <div>
+                <span class="ion-android-happy"></span>
+                <h1>Good Job!</h1>
+                <?php
+                echo "Your score is $Resultans Out of 20!";
+                ?>
+            </div>
+            <div class="close">
+                <a onclick="nopop();" >Close</a>
+            </div>
         </div>
+    </div>    
 <div class="toblur" id="toblur">        
 
 <header class="site-header">
@@ -221,6 +264,22 @@ $(document).ready(function(){
          <img src="http://localhost/quiz/images/nss_logo.png" height="90vh" width="90vh">
       </header>
 <div class="container-main">
+    <div class="content">
+        <h2>Thank you for participating!</h2>
+        <p>This is a small initiative under the Awareness campaign against CoronaVirus (Covid-19) pandemic started by NSS unit of Ramrao adik institute of technology.
+        Here are the glimpse of some of the activities condcuted by NSS-RAIT during this lockdown period.</p>
+        <br>
+        <div class="vid">
+            <iframe width="400" height="250" src="https://www.youtube.com/embed/p2H31SJ3Fg0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <br><br>
+            <iframe width="400" height="250" src="https://www.youtube.com/embed/knGTkX-S6dw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p>
+        In this difficult time we are doing all we can to serve the nation. As our respected prime minister mentioned national service scheme volunteers to come forward and contribute in this fight against the pandemic.
+        If you or your unit is also conducting any such activities we invite you all to post your work for on this wall...
+        </p>
+    </div>
+</div>
     <div class="container">
             <div class="wall">
 			<header class="clearfix">
@@ -255,13 +314,12 @@ $(document).ready(function(){
         </div>
         <div class="row" style="padding: 10px;">
             <div class="col-md-offset-3 col-md-6">
-                <h1>Add Image</h1>
-
+                <h1>Upload posts</h1>
                 <?php if (!empty($message)) { ?>
                     <div class="alert alert-success"><?php echo $message; ?></div>
                 <?php } ?>
 
-                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" required>
@@ -271,10 +329,9 @@ $(document).ready(function(){
                         <label>Description</label>
                         <textarea name="description" class="form-control"></textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label>Select file</label>
-                        <input type="file" name="image[]" multiple accept="image/*" class="form-control" required />
+                    <div class="form-group" id="file">
+                        <label>Choose file
+                        <input type="file" name="image[]" multiple accept="image/*" class="form-control" required /></label>
                     </div>
                     <input type="submit" name="submit" value="Post" class="btn btn-success" />
                     <!-- <a href="index.php" class="btn btn-success">See Images</a> -->

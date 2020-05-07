@@ -145,6 +145,7 @@
       background-color: #bfb;
       border-color: #4c4;
       }
+      /* each option */
       .clearfix::after {
       content: "";
       clear: both;
@@ -216,133 +217,82 @@
                      ?>
                   <br>
                   <input type="submit" name="submit_quiz" Value="submit_quiz" class="btn btn-success m-auto d-block" />
-                  <!-- <a onclick="pop()" href='#top'  class="btn btn-success m-auto d-block">Submit</a></form> -->
-                  <?php
-         // $counter = 0;
-         // $Resultans = 0;
-         //    if(isset($_POST['submit'])){
-         //    if(!empty($_POST['quizcheck'])) {
-         //    // Counting number of checked checkboxes.
-         //    $checked_count = count($_POST['quizcheck']);
-         //    // print_r($_POST);
-         //    ?>
-
-         //    <?php
-         //    // Loop to store and display values of individual checked checkbox.
-         //    $selected = $_POST['quizcheck'];
-            
-         //    $q1= " select q_ans from questions ";
-         //    $ansresults = mysqli_query($con,$q1);
-         //    $i = 1;
-         //    while($rows = mysqli_fetch_array($ansresults)) {
-         //      // print_r($rows);
-         //    	$flag = $rows['q_ans'] == $selected[$i];
-            	
-         //    			if($flag){
-         //    				// echo "correct ans is ".$rows['ans']."<br>";				
-         //    				$counter++;
-         //    				$Resultans++;
-         //    				// echo "Well Done! your ". $counter ." answer is correct <br><br>";
-         //    			}else{
-         //    				$counter++;
-         //    				// echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
-         //    			}					
-         //    		$i++;		
-         //    	}}}
-         //    	?>
-            
-         //    <?php 
-         //    echo $Resultans;
-         //    $name = $_SESSION['username'];
-         //    $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
-         //    mysqli_query($con,$finalresult); 
-         //    // if($queryresult){
-         //    // 	echo "successssss";
-         //    // }
-         //    ?>
                   
                   <script type= "text/javascript"> 
                      var c=0;
                      function pop(){
                         <?php 
-                           	         
-                                       $counter = 0;
-                                       $Resultans = 0;
-                                          if(isset($_POST['submit'])){
-                                          if(!empty($_POST['quizcheck'])) {
-                                          // Counting number of checked checkboxes.
-                                          $checked_count = count($_POST['quizcheck']);
-                                          // print_r($_POST);
-                                          ?>
-                              
-                                         
-                                          <?php
-                                          echo "Out of 3, You have attempt ".$checked_count." option."; ?>
-                                         
-                                      
-                                           
-                                          <?php
-                                          // Loop to store and display values of individual checked checkbox.
-                                          $selected = $_POST['quizcheck'];
-                                          
-                                          $q1= " select q_ans from questions ";
-                                          $ansresults = mysqli_query($con,$q1);
-                                          $i = 1;
-                                          while($rows = mysqli_fetch_array($ansresults)) {
-                                            // print_r($rows);
-                                             $flag = $rows['q_ans'] == $selected[$i];
-                                             
-                                                   if($flag){
-                                                      // echo "correct ans is ".$rows['ans']."<br>";				
-                                                      $counter++;
-                                                      $Resultans++;
-                                                      // echo "Well Done! your ". $counter ." answer is correct <br><br>";
-                                                   }else{
-                                                      $counter++;
-                                                      // echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
-                                                   }					
-                                                $i++;		
-                                             }
-                                             ?>
-                                       
-                                        <?php 
-                                             echo " Your score is ". $Resultans.".";
+                           $counter = 0;
+                           $Resultans = 0;
+                              if(isset($_POST['submit'])){
+                                 if(!empty($_POST['quizcheck'])){
+                                    // Counting number of checked checkboxes.
+                                    $checked_count = count($_POST['quizcheck']);
+                                    // print_r($_POST);
+                                    ?>
+                                                                  
+                                    <?php
+                                    echo "Out of 3, You have attempt ".$checked_count." option."; ?>                                                                           
+                                    <?php
+                                    // Loop to store and display values of individual checked checkbox.
+                                    $selected = $_POST['quizcheck'];
+                                    
+                                    $q1= " select q_ans from questions ";
+                                    $ansresults = mysqli_query($con,$q1);
+                                    $i = 1;
+                                    while($rows = mysqli_fetch_array($ansresults)) {
+                                       // print_r($rows);
+                                       $flag = $rows['q_ans'] == $selected[$i];
+                                             if($flag){
+                                                // echo "correct ans is ".$rows['ans']."<br>";				
+                                                $counter++;
+                                                $Resultans++;
+                                                // echo "Well Done! your ". $counter ." answer is correct <br><br>";
                                              }
                                              else{
-                                             echo "<b>Please Select Atleast One Option.</b>";
-                                             }
-                                             } 
-                                           ?>
-                                                              
-                                          <?php 
+                                                $counter++;
+                                                // echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
+                                             }					
+                                          $i++;		
+                                       } //while loop ends
+                                       ?>
+                                 
+                                    <?php 
+                                       echo " Your score is ". $Resultans.".";
+                                 }
+                                 else{
+                                 echo "<b>Please Select Atleast One Option.</b>";
+                                 }
+                              } 
+                              ?>                     
+                              <?php 
+                              $name = $_SESSION['username'];
+                              $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
+                              mysqli_query($con,$finalresult); 
+                              // if($queryresult){
+                              // 	echo "successssss";
+                              // }
                               
-                                          $name = $_SESSION['username'];
-                                          $finalresult = " insert into score(name,sc) values ('$name','$Resultans') ";
-                                          mysqli_query($con,$finalresult); 
-                                          // if($queryresult){
-                                          // 	echo "successssss";
-                                          // }
-                                          
                            ?>
-                        if(c==0){
-                           document.getElementById("box").style.display= "block";
-                           c=1;
-                        }
-                        else{
-                           document.getElementById("box").style.display= "none";
-                           c=0;
-                        }
-                     } 
-                     </script>
-<div id="box">
+                     //    if(c==0){
+                     //       document.getElementById("box").style.display= "block";
+                     //       c=1;
+                     //    }
+                     //    else{
+                     //       document.getElementById("box").style.display= "none";
+                     //       c=0;
+                     //    }
+                     // } 
+                     // </script>
+                  <!-- <div id="box">
                   <span class="ion-android-happy"></span>
                   <h1>Good Job!</h1>
                   <?php
-                  echo "Your score is $Resultans Out of 20!";
+                  // echo "Your score is $Resultans Out of 20!";
                   ?>
 
                   <a onclick="window.location.href='add-image.php'" class="close">Close</a>
-                  </div>
+                  </div> -->
                   
                
                <p id="letc"></p>
