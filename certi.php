@@ -8,7 +8,7 @@
         $rotation =0;
         $name = $_SESSION['username'];
         $output ="uploads/certificate_$name.png";
-        $origin_x = 450;
+        $origin_x =500;
         $origin_y=480;
         $font_size = 40;
         $certificate_text = $name;
@@ -34,7 +34,13 @@
         header('Content-Length: ' . filesize($finalOutput)); //Absolute URL
         ob_clean();
         flush();
-        readfile($finalOutput); //Absolute URL
+        readfile($output); //Absolute URL
+        
+        readfile($output); //Absolute URL
+        if (file_exists($output)) {
+            unlink($output);
+        }
+        
         exit();
         
     ?>
