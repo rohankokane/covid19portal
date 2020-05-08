@@ -12,45 +12,74 @@ session_start();
 ?>
 <?php
 	$message = "";
+
     if (isset($_POST["submit_post"]) || isset($_POST["submit_image"]) )
-    {	$name = $_SESSION['username'];
-	$email = $_SESSION['email'];
+    {	
+		$name = $_SESSION['username'];
+		$email = $_SESSION['email'];
 		if (isset($_POST["submit_post"])){
-				$sql5 = "SELECT `user_id` FROM `postuser` WHERE `email` = '$email' ";
+				$sql5 = "SELECT `puser_id` FROM `postuser` WHERE `email` = '$email' ";
+				$res = mysqli_query($conn, $sql5);
+				if (mysqli_num_rows($res) > 0) {
+					// output data of each row
+						while($row = mysqli_fetch_assoc($res)) {
+						$puser_id = $row["puser_id"];
+						}
+				} else {	
+					echo "ERROR NO ID found";
+				}
+				$title = mysqli_real_escape_string($conn, $_POST["title"]);
+				$description = mysqli_real_escape_string($conn, $_POST["description"]);
+		
+				$title = htmlentities($title);
+				$description = htmlentities($description);
+		
+				$total_image = count($_FILES["image"]["tmp_name"]);
+				for ($a = 0; $a < $total_image; $a++)
+				{
+					$tmp_name = $_FILES["image"]["tmp_name"][$a];
+					$file_name = $_FILES["image"]["name"][$a];
+					$file_path = "uploads/" . $file_name;
+						
+					$sql = "INSERT INTO images(title, description, path,puser_id) VALUES('$title', '$description', '" . $file_name . "','$puser_id')";
+					mysqli_query($conn, $sql);
+					move_uploaded_file($tmp_name, $file_path);
+				}
+				$message = "Post has been uploaded";
 			}
 			else{
 				$sql5 = "SELECT `user_id` FROM `user` WHERE `email` = '$email' ";
+				$res = mysqli_query($conn, $sql5);
+				if (mysqli_num_rows($res) > 0) {
+					// output data of each row
+						while($row = mysqli_fetch_assoc($res)) {
+						$user_id = $row["user_id"];
+						}
+				} else {	
+					echo "ERROR NO ID found";
+				}
+				$title = mysqli_real_escape_string($conn, $_POST["title"]);
+				$description = mysqli_real_escape_string($conn, $_POST["description"]);
+		
+				$title = htmlentities($title);
+				$description = htmlentities($description);
+		
+				$total_image = count($_FILES["image"]["tmp_name"]);
+				for ($a = 0; $a < $total_image; $a++)
+				{
+					$tmp_name = $_FILES["image"]["tmp_name"][$a];
+					$file_name = $_FILES["image"]["name"][$a];
+					$file_path = "uploads/" . $file_name;
+						
+					$sql = "INSERT INTO images(title, description, path,user_id) VALUES('$title', '$description', '" . $file_name . "','$user_id')";
+					mysqli_query($conn, $sql);
+					move_uploaded_file($tmp_name, $file_path);
+				}
+				$message = "Post has been uploaded";
 			}
-			$res = mysqli_query($conn, $sql5);
-                    //echo mysqli_num_rows($res); 
-                    if (mysqli_num_rows($res) > 0) {
-                        // output data of each row
-							while($row = mysqli_fetch_assoc($res)) {
-							// echo "id: " . $row["user_id"];
-							$user_id = $row["user_id"];
-							}
-                    } else {	
-                        echo "ERROR NO ID found";
-                    }
 
-        $title = mysqli_real_escape_string($conn, $_POST["title"]);
-        $description = mysqli_real_escape_string($conn, $_POST["description"]);
 
-        $title = htmlentities($title);
-        $description = htmlentities($description);
 
-        $total_image = count($_FILES["image"]["tmp_name"]);
-        for ($a = 0; $a < $total_image; $a++)
-        {
-        	$tmp_name = $_FILES["image"]["tmp_name"][$a];
-	    	$file_name = $_FILES["image"]["name"][$a];
-			$file_path = "uploads/" . $file_name;
-                
-	        $sql = "INSERT INTO images(title, description, path,user_id) VALUES('$title', '$description', '" . $file_name . "','$user_id')";
-	        mysqli_query($conn, $sql);
-	        move_uploaded_file($tmp_name, $file_path);
-        }
-        $message = "Post has been uploaded";
 	}
 	session_destroy();
 ?>
