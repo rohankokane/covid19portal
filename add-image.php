@@ -29,10 +29,17 @@ session_start();
             $q1= " select q_ans from questions ";
             $ansresults = mysqli_query($conn,$q1);
             $i = 1;
-            while($rows = mysqli_fetch_array($ansresults)) {
+            while($rows = mysqli_fetch_array($ansresults)) 
+            {
               // print_r($rows);
-            	$flag = $rows['q_ans'] == $selected[$i];
-            	
+              if(!isset($selected[$i]))
+              { 
+                $counter++;
+              }
+              else
+              {
+
+              $flag = $rows['q_ans'] == $selected[$i];	
             			if($flag){
             				// echo "correct ans is ".$rows['ans']."<br>";				
             				$counter++;
@@ -43,6 +50,10 @@ session_start();
             				// echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
             			}					
             		$i++;		
+                }
+            
+         
+            			
             	}}} 
             // echo $Resultans;
             $name = $_SESSION['username'];
