@@ -1,13 +1,59 @@
-<SCRIPT type="text/javascript">
+<!-- <SCRIPT type="text/javascript">
     window.history.forward();
     function noBack() { window.history.forward(); }
 </SCRIPT>
 </HEAD>
 <BODY onload="noBack();" 
-    onpageshow="if (event.persisted) noBack();">
+    onpageshow="if (event.persisted) noBack();"> -->
 <?php 
-	$con = mysqli_connect('localhost','root');
-	mysqli_select_db($con,'quizdb');
+session_start();
+	$conn = mysqli_connect('localhost','root');
+	mysqli_select_db($conn,'quizdb');
+?>
+<?php
+	$message = "";
+	$name = $_SESSION['username'];
+	$email = $_SESSION['email'];
+    if (isset($_POST["submit_post"]) || isset($_POST["submit_image"]) )
+    {	
+		if (isset($_POST["submit_post"])){
+				$sql5 = "SELECT `user_id` FROM `postuser` WHERE `email` = '$email' ";
+			}
+			else{
+				$sql5 = "SELECT `user_id` FROM `user` WHERE `email` = '$email' ";
+			}
+			$res = mysqli_query($conn, $sql5);
+                    //echo mysqli_num_rows($res); 
+                    if (mysqli_num_rows($res) > 0) {
+                        // output data of each row
+							while($row = mysqli_fetch_assoc($res)) {
+							// echo "id: " . $row["user_id"];
+							$user_id = $row["user_id"];
+							}
+                    } else {	
+                        echo "ERROR NO ID found";
+                    }
+
+        $title = mysqli_real_escape_string($conn, $_POST["title"]);
+        $description = mysqli_real_escape_string($conn, $_POST["description"]);
+
+        $title = htmlentities($title);
+        $description = htmlentities($description);
+
+        $total_image = count($_FILES["image"]["tmp_name"]);
+        for ($a = 0; $a < $total_image; $a++)
+        {
+        	$tmp_name = $_FILES["image"]["tmp_name"][$a];
+	    	$file_name = $_FILES["image"]["name"][$a];
+			$file_path = "uploads/" . $file_name;
+                
+	        $sql = "INSERT INTO images(title, description, path,user_id) VALUES('$title', '$description', '" . $file_name . "','$user_id')";
+	        mysqli_query($conn, $sql);
+	        move_uploaded_file($tmp_name, $file_path);
+        }
+        $message = "Post has been uploaded";
+	}
+	
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,7 +63,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Hello, world!</title>
+	<title>NSS-RAIT</title>
+	<!-- button -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		<!-- image Gallery -->
+		<link rel="stylesheet" href="assets/default.css" />
+		<link rel="stylesheet" href="assets/component.css" />
+		<script src="assets/modernizr.custom.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -29,8 +82,11 @@
 	font-family: 'Open Sans', sans-serif;
 	-->
 	<style>
+		@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+
 		body{
-			height: 100vh;
+			background-color: #ffffff;
+			/* height: 100vh; */
 		}
 		.site-header{
 			background-color:#f5f5f5; 
@@ -41,30 +97,18 @@
 			justify-content: space-evenly;
 			/* align-items: center; */
 			}
-		.form-group{
-			margin-left: 20px;
-			margin-right: 20px;
-		}
-		.card{
-			box-shadow:#4e0000 1px 1px 10px;
-			padding-bottom: 10px;
-		}
-		.btn{
-			/* padding: 15px; */
-			background-color: #9F1C33;
-			color: white;
-			padding: 16px 20px;
-			border: none;
-			cursor: pointer;
-			margin-bottom: 10px;
-			}
 		
-		.container{
-			
+		.cont{
+			display: flex;
+			flex-direction: column;
+			/* justify-content: space-evenly; */
+			/* height: 100vh; */	
+		}
+		.bg{
 			background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
 			background-repeat: no-repeat;
 			/* background-position: 50px; */
-			background-size:contain;	
+			/* background-size:unset; */
 		}
 		footer{
 			background-color: #34393d; 
@@ -83,7 +127,130 @@
 		/* img{
 			height:min-content;
 		} */
-			
+
+		.btnn{
+		display: flex;
+        flex-direction: row;
+        justify-content:center;
+		align-content: center;
+		/* background-image: -webkit-linear-gradient(); */
+        /* background-image: -webkit-linear-gradient(left, #39ade7, #2079b0); */
+        /* background-color: #44c0fe; */
+        padding: 10px 10px;
+        /* font-family: sans-serif, Arial; */
+        font-size: 16px;
+        color:rgb(249, 252, 255);
+        
+		border-radius: 20px;
+		/* background-image: -webkit-linear-gradient(le)0; */
+		transition: all 0.5s;
+		}
+		#btnq{
+			background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d);
+			border: 1px solid #20b16c;
+			/* -webkit-box-shadow: 6px 5px 24px #666666;  */
+		}
+		/* #btnp{
+			background-image: -webkit-linear-gradient(left, #2e92cc, #294e7e);
+			border: 1px solid #295182;
+		} */
+        /* .btnn{
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d);
+        border-radius: 20px;
+        } */
+        #btnn:active{
+            transform: translateY(4px);
+		}
+		#buttons{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+        justify-content:space-evenly;
+		}
+	.btn {
+    border: none;
+    font-family: 'Lato';
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 80px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-content: center;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+.btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+/* Pseudo elements for icons */
+.btn:before {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* Icon separator */
+.btn-sep {
+    padding: 25px 60px 25px 60px;
+}
+
+.btn-sep:before {
+    background: rgba(0,0,0,0.15);
+}
+
+/* Button 1 */
+.btn-1 {
+    background: #3498db;
+    color: #fff;
+}
+
+.btn-1:hover {
+    background: #2980b9;
+}
+
+.btn-1:active {
+    background: #2980b9;
+    top: 2px;
+}
+
+.btn-1:before {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    line-height: 3;
+    font-size: 140%;
+    width: 60px;
+}
+/* .icon-info:before {
+    content: "\f05a";
+} */
 	</style>
 
 </head>
@@ -96,51 +263,66 @@
 		<div></div>
 		<img src="http://localhost/quiz/images/nss_logo.png" width="90vh">
 	</header>
-	<div class="container">
+	<div class="bg">
+	<div class="cont">
 		<h1 class="text-center"> Welcome to Quiz on CoronaVirus 2020 </h1>
 		<h5 class="text-center">This is small initiative taken up by NSS-RAIT under the awareness campaign against Covid-19</h5><br>
 		<div class="row">
 			<div class="col-lg-3"></div>
-			<div class="col-lg-6">
-				<div class="card">
-					<h4 class="card-header text-center" style="background-color:#9f1c33; color: beige;"> Participant's Details </h4>
-					<br>
-					<form action="register.php" method="post">
-						<div class="form-group">
-							<label for="name"> Name: </label>
-							<input type="text" name="name" id="name" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label for="email" > Email id: </label>
-							<input type="email" name="email" id="email" class="form-control" data-toggle="tooltip" title="You will receive the certificate via email" required>
-						</div>
-						<div class="form-group">
-							<label for="contact"> Contact no: </label>
-							<input type="tel" name="contact" id="contact" class="form-control" autocorrect=off pattern="[6-9]{1}[0-9]{9}" >
-						</div>
-						<div class="form-group">
-							<label for="clgname"> College name: (if student)</label>
-							<input type="text" name="clgname" id="clgname" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label for="age"> Age: </label>
-							<input type="text" name="age" id="age" class="form-control" name="quantity" min="1" max="90">
-						</div>
-						<button class="btn btn-success d-block m-auto" type="submit"> Start </button>
-					</form>
-				
+			<div class="col-lg-6" id="buttons">
+					<!-- <h4 class="card-header text-center" style="background-color:#9f1c33; color: beige;"> Participant's Details </h4> -->
+					<button class="btn btn-1 btn-sep icon-info" id="btnq" onclick="window.location.href = 'quiz_form.php';"><i class="fas fa-server"></i>&nbsp Take Quiz</button>
+					<button class="btn btn-1 btn-sep icon-info" onclick="window.location.href = 'post_form.php';"><i class="fa fa-upload" style="font-size:24px"></i>&nbsp Upload Post</button>
+					<!-- <div class="btnn" id="btnq">Take Quiz</div>
+					<div class="btnn" id="btnp">Upload Post</div> -->
 				</div>
-			</div>
-			
 			<div class="col-lg-3"></div>
 			<!-- 960x480 (480p); 1440x720 -->
 		</div><br>
 		<h3 class="text-center">We can win this war together!!</h3>
 		<br>
 	</div>
+	
+	<div class="container">
+		<header class="clearfix">
+		
+		<!-- <form method="post" action="add-image.php"> -->
+		<!-- <p align="right"> -->
+		<!-- <button type="submit" class="btn btn-success">Add Image</button> -->
+		<!-- </p> -->
+		<!-- </form> -->
+	
+		
+		<h1><b>NSS WALL</b></h1>
+		</header>
+		<div class="main">
+			<ul id="og-grid" class="og-grid">
+				<?php
+				$conn = mysqli_connect("localhost", "root", "", "quizdb");
+				$sql = "SELECT * FROM images";
+				$result = mysqli_query($conn, $sql);
+				while ($row = mysqli_fetch_object($result)) {
+				?>
+				<li>
+					<a href="javascript:void(0);" data-largesrc="uploads/<?php echo $row->path; ?>" data-title="<?php echo $row->title; ?>" data-description="<?php echo $row->description; ?>">
+						<img src="uploads/<?php echo $row->path; ?>"style="max-width:90vw; height:auto; max-height: 30vh;" class="img-responsive" alt="img01"/>
+					</a>
+				</li>
+				<?php } ?>
+			</ul>
+		</div>
+	</div><!-- /container -->
+	
+	<script src="assets/jquery-1.11.3.min.js"></script>
+	<script src="assets/grid.js"></script>
+	<script>
+		$(function() {
+			Grid.init();
+		});
+	</script>
 	<br>
 	<br>
-
+	
 	<footer>
 		<div class="row">
 			<div class="col-6">
@@ -158,6 +340,6 @@
 			</div>
 		</div>	
 	</footer>
-
+</div>
 </body>
 </html>

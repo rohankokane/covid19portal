@@ -12,43 +12,17 @@ session_start();
    	// 	echo"connection";
    	// }
    	mysqli_select_db($conn,'quizdb');
-   ?>
-<?php
-    $message = "";
-    if (isset($_POST["submit"]))
-    {
-        $conn = mysqli_connect("localhost", "root", "", "quizdb");
 
-        $title = mysqli_real_escape_string($conn, $_POST["title"]);
-        $description = mysqli_real_escape_string($conn, $_POST["description"]);
-
-        $title = htmlentities($title);
-        $description = htmlentities($description);
-
-        $total_image = count($_FILES["image"]["tmp_name"]);
-        for ($a = 0; $a < $total_image; $a++)
-        {
-        	$tmp_name = $_FILES["image"]["tmp_name"][$a];
-	    	$file_name = $_FILES["image"]["name"][$a];
-	        $file_path = "uploads/" . $file_name;
-	        $sql = "INSERT INTO images(title, description, path) VALUES('$title', '$description', '" . $file_name . "')";
-	        mysqli_query($conn, $sql);
-	        move_uploaded_file($tmp_name, $file_path);
-        }
-        $message = "Post has been uploaded";
-    }
-?>
-<?php
          $counter = 0;
          $Resultans = 0;
-            if(isset($_POST['submit_quiz'])){
+        //  if(!isset($_POST['submit_post'])){ -->
+         if(isset($_POST['submit_quiz'])){
             if(!empty($_POST['quizcheck'])) {
+        
             // Counting number of checked checkboxes.
-            $checked_count = count($_POST['quizcheck']);
+            // $checked_count = count($_POST['quizcheck']);
             // print_r($_POST);
-            ?>
-
-            <?php
+     
             // Loop to store and display values of individual checked checkbox.
             $selected = $_POST['quizcheck'];
             
@@ -69,10 +43,7 @@ session_start();
             				// echo "Sorry! your ". $counter ." answer is innncorrect <br><br>";
             			}					
             		$i++;		
-            	}}}
-            	?>
-            
-            <?php 
+            	}}} 
             // echo $Resultans;
             $name = $_SESSION['username'];
             $email = $_SESSION['email'];
@@ -97,6 +68,10 @@ session_start();
                     // if($queryresult){
                     // 	echo "successssss";
                     // }
+            // }          
+            // else{
+            //     echo '<style>#box{display:none;}</style>';
+            // }
             ?>
 <html>
 <head>
@@ -105,7 +80,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <title>Google Image | Add</title>
+        <title>NSS-RAIT</title>
         <link rel="stylesheet" href="assets/default.css" />
 		<link rel="stylesheet" href="assets/component.css" />
         <script src="assets/modernizr.custom.js"></script>
@@ -115,12 +90,12 @@ session_start();
         <script src="assets/jquery-1.11.3.min.js"></script>
         <script src="assets/bootstrap.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
-        <script>
-$(document).ready(function(){
-   setTimeout(function(){
-      PopUp();
-   },00); // 5000 to load it after 5 seconds from page load
-});
+<script>
+        $(document).ready(function(){
+        setTimeout(function(){
+            PopUp();
+        },00); // 5000 to load it after 5 seconds from page load
+        });
         function PopUp(){
         // var result="<?php echo $Resultans; ?>";
         // alert("Your score is"+result+" !");
@@ -128,12 +103,12 @@ $(document).ready(function(){
         // document.getElementsByTagName("body").style.filter="blur(12px)";
         document.getElementById("toblur").style.filter = "blur(10px)";
         // document.getElementsByTagName("BODY")[0].style.filter = "blur(12px)";
-    }
+        }
     function nopop(){
         document.getElementById("box").style.display= "none";
         document.getElementById("toblur").style.filter = "blur(0px)";
     }
-    </script>
+</script>
           
         <style>
         @import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
@@ -191,7 +166,7 @@ $(document).ready(function(){
 			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
 			justify-content: space-evenly;
 			/* align-items: center; */
-            }
+        }
             
         /* .container-main{
         display: flex;
@@ -207,7 +182,7 @@ $(document).ready(function(){
         background-image: url(http://www.dypatil.edu/mumbai/rait/wp-content/themes/stack-theme/images/logo_bg.jpg);
         background-repeat: no-repeat;
         /* background-position: 50px; */
-        background-size:contain;	
+        background-size:unset;	
         padding: 0px;
         }
         .content{
@@ -243,27 +218,32 @@ $(document).ready(function(){
         flex-direction: row;
         justify-content:space-around;
         /* background-image: -webkit-linear-gradient(); */
-        background-image: -webkit-linear-gradient(left, #39ade7, #2079b0);
+        /* background-image: -webkit-linear-gradient(left, #39ade7, #2079b0); */
         /* background-color: #44c0fe; */
         padding: 10px 10px;
         /* font-family: sans-serif, Arial; */
         font-size: 16px;
         color:rgb(249, 252, 255);
-        border: 1px solid rgb(182, 182, 182);
-        border-radius: 4px;
+        border: 2px solid #3181b6;
+        
+        border-radius: 6px;
         transition: all 0.5s;
 
         /* width:80vw; */
         }
-        #file:active{
+        #file{
         /* background-color: #3e8e41; */
         /* box-shadow: 0 5px #666; */
-        transform: translateY(4px);
-        background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d);
+        background-color: #3498db;
+        /* background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d); */
+        border-radius: 6px;
         }
-        #filelabel::after{
+        #file:active{
+            transform: translateY(4px);
+        }
+        /* #filelabel::after{
             background-image: -webkit-linear-gradient(left, #2ecc55, #20b06d);
-        }
+        } */
         .box-content{
         display: flex;
         flex-direction: column;
@@ -324,7 +304,9 @@ $(document).ready(function(){
         transform: translateY(4px);
         }
         a {text-decoration: none;}
-
+        .file::after{
+            content: " ";
+        }
 
 /* .button:active span:after {
     transform: scale(0.99);
@@ -332,7 +314,14 @@ $(document).ready(function(){
 .button:active{
  top:0.2em;
 } */
-        </style>
+</style>
+         <script>
+             function selectfile(){
+                // alert("File uploaded successfuly");
+                    document.getElementById("file").style.backgroundImage= "-webkit-linear-gradient(left, #2ecc55, #20b06d)"; 
+                    // document.body. = "red";
+             }
+        </script>
 </head>
 
 <body>
@@ -352,10 +341,11 @@ $(document).ready(function(){
                 echo "Your score is $Resultans Out of 20!";
                 ?>
             </div>
-            <div class="close-btn">
+            <!-- <div class="close-btn"> -->
                 <!-- <button onclick="nopop(),'certi.php'"; name="Download"  type="submit" class="button"><span> Download </span></button></div> -->
-                <a onclick="nopop();" href="certi.php" >Download Certificate</a>
-            </div>click the above button to Download your certificate!
+                <a onclick="nopop();" href="certi.php" class="close-btn">Download Certificate</a>
+            <!-- </div> -->
+            click the above button to Download your certificate!
         </div>
     </div>    
 <div class="toblur" id="toblur">        
@@ -367,21 +357,21 @@ $(document).ready(function(){
         <br>
         <div class="vid">
             <iframe width="400" height="250" src="https://www.youtube.com/embed/p2H31SJ3Fg0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <br><br>
+            <br><br><div></div>
             <iframe width="400" height="250" src="https://www.youtube.com/embed/knGTkX-S6dw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <br>
         <p>
         In this difficult time we are doing all we can to serve the nation. As our respected prime minister mentioned national service scheme volunteers to come forward and contribute in this fight against the pandemic.
-        If you or your unit is also conducting any such activities we invite you all to post your work for on this wall...
+        If you or your unit is also conducting any such activities we invite you all to post your work for on this wall.
         </p>
+        <?php echo $_SESSION['username']; ?>
     </div>
 
     <div class="container">
             <div class="wall">
 			<header class="clearfix">
-                
             <h1 class="text-center"><b>NSS Wall</b></h1>
-            
 			</header>
 			<div class="main">
 				<ul id="og-grid" class="og-grid">
@@ -405,7 +395,7 @@ $(document).ready(function(){
 		<script src="assets/grid.js"></script>
 		<script>
 			$(function() {
-				Grid.init();
+				Grid.init();    
 			});
 		</script>
         </div>
@@ -416,7 +406,7 @@ $(document).ready(function(){
                     <div class="alert alert-success"><?php echo $message; ?></div>
                 <?php } ?>
 
-                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                <form method="POST" action="index.php" enctype="multipart/form-data" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" required>
@@ -426,14 +416,16 @@ $(document).ready(function(){
                         <label>Description</label>
                         <textarea name="description" class="form-control"></textarea>
                     </div>
+                    
                     <div class="form-group" id="file">
                         <label class="text-center">Choose pictures to upload<div></div><i class="fa fa-upload" style="font-size:24px"></i>
-                        <input type="file" name="image[]" multiple accept="image/*" class="form-control" required /></label>
+                        <input type="file" name="image[]" multiple accept="image/*" class="form-control" id="uploadBox" required onclick="setTimeout('selectfile();', 3000)"/></label>
                     </div>
+                   
                     <!-- <label class="text-center"> -->
                         <!-- <button name="submit" type="submit" value="Post" class="button6"> Post </button> -->
                         <!-- <button class="button" style="vertical-align:middle"><span>Hover </span></button> -->
-                        <div class="text-center"><button name="submit" value="Post" type="submit" class="button"><span> Post </span></button></div>
+                        <div class="text-center"><button name="submit_image" value="Post" type="submit" class="button"><span> Post </span></button></div>
                     <!-- <input type="submit" name="submit" value="Post" class="btn btn-success" />     -->
                     <!-- <a href="index.php" class="btn btn-success">See Images</a> -->
                 </form>

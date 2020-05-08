@@ -1,6 +1,8 @@
 <SCRIPT type="text/javascript">
     window.history.forward();
-    function noBack() { window.history.forward(); }
+    function noBack() { 
+        
+        window.history.forward(); }
 </SCRIPT>
 </HEAD>
 <BODY onload="noBack();" 
@@ -14,29 +16,29 @@ session_start();
    	mysqli_select_db($con,'quizdb');
    ?>
 <?php
-    $message = "";
-    if (isset($_POST["submit"]))
-    {
-        $conn = mysqli_connect("localhost", "root", "", "quizdb");
+    // $message = "";
+    // if (isset($_POST["submit"]))
+    // {
+    //     $conn = mysqli_connect("localhost", "root", "", "quizdb");
 
-        $title = mysqli_real_escape_string($conn, $_POST["title"]);
-        $description = mysqli_real_escape_string($conn, $_POST["description"]);
+    //     $title = mysqli_real_escape_string($conn, $_POST["title"]);
+    //     $description = mysqli_real_escape_string($conn, $_POST["description"]);
 
-        $title = htmlentities($title);
-        $description = htmlentities($description);
+    //     $title = htmlentities($title);
+    //     $description = htmlentities($description);
 
-        $total_image = count($_FILES["image"]["tmp_name"]);
-        for ($a = 0; $a < $total_image; $a++)
-        {
-        	$tmp_name = $_FILES["image"]["tmp_name"][$a];
-	    	$file_name = $_FILES["image"]["name"][$a];
-	        $file_path = "uploads/" . $file_name;
-	        $sql = "INSERT INTO images(title, description, path) VALUES('$title', '$description', '" . $file_name . "')";
-	        mysqli_query($conn, $sql);
-	        move_uploaded_file($tmp_name, $file_path);
-        }
-        $message = "Post has been uploaded";
-    }
+    //     $total_image = count($_FILES["image"]["tmp_name"]);
+    //     for ($a = 0; $a < $total_image; $a++)
+    //     {
+    //     	$tmp_name = $_FILES["image"]["tmp_name"][$a];
+	//     	$file_name = $_FILES["image"]["name"][$a];
+	//         $file_path = "uploads/" . $file_name;
+	//         $sql = "INSERT INTO images(title, description, path) VALUES('$title', '$description', '" . $file_name . "')";
+	//         mysqli_query($conn, $sql);
+	//         move_uploaded_file($tmp_name, $file_path);
+    //     }
+    //     $message = "Post has been uploaded";
+    // }
 ?>
 
 <html>
@@ -326,7 +328,7 @@ session_start();
                     <div class="alert alert-success"><?php echo $message; ?></div>
                 <?php } ?>
 
-                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                <form method="POST" action="index.php" enctype="multipart/form-data" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" required>
@@ -343,7 +345,7 @@ session_start();
                     <!-- <label class="text-center"> -->
                         <!-- <button name="submit" type="submit" value="Post" class="button6"> Post </button> -->
                         <!-- <button class="button" style="vertical-align:middle"><span>Hover </span></button> -->
-                        <div class="text-center"><button name="submit" value="Post" type="submit" class="button"><span> Post </span></button></div>
+                        <div class="text-center"><button name="submit_post" value="Post" type="submit" class="button"><span> Post </span></button></div>
                     <!-- <input type="submit" name="submit" value="Post" class="btn btn-success" />     -->
                     <!-- <a href="index.php" class="btn btn-success">See Images</a> -->
                 </form>

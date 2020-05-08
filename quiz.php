@@ -1,10 +1,3 @@
-<SCRIPT type="text/javascript">
-    window.history.forward();
-    function noBack() { window.history.forward(); }
-</SCRIPT>
-</HEAD>
-<BODY onload="noBack();" 
-    onpageshow="if (event.persisted) noBack();">
 <?php
    session_start();
    
@@ -160,8 +153,13 @@
       }
       
       </style>
+      <SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
    </head>
-   <body>
+   <body onload="noBack();" 
+    onpageshow="if (event.persisted) noBack();">
       <header class="site-header">
          <img src="http://www.dypatil.edu/mumbai/rait/wp-content/uploads/2020/04/logo-1-1-1.png" width="240vh">
          <!-- <div class="text-center"><h1>NSS-RAIT</h1></div> -->
@@ -182,7 +180,7 @@
                <br>
                <form action="add-image.php" method="post">
                   <?php
-                     for($i=1;$i<6;$i++){
+                     for($i=1;$i<26;$i++){
                         $l = 1;
                         $ansid = $i;
 
@@ -198,9 +196,10 @@
                               <p><?php echo $i ." . ". $row1['question']; ?> </p>
 
                                 <!-- image: -->
-                                <div class="text-center">
-                                    <?php echo '<img src="data:image;base64,'.base64_encode($row1['img']).' " alt="Image" style="max-width:90vw; height:auto; max-height: 50vh;">';
-                                    ?>
+                                <div class="text-center"> 
+                                    <img src="images/<?php echo $row1['img']; ?>" style="max-width:90vw; height:auto; max-height: 30vh;" class="img-responsive" alt="img01" >
+                                    <!-- <img src="data:image;base64,'.base64_encode($row1['img']).' " alt="Image" style="max-width:90vw; height:auto; max-height: 50vh;">'; -->
+                              
                                 </div>
                               <div class="radio-toolbar" >
                               <?php
@@ -223,7 +222,8 @@
                      } //for loop end
                      ?>
                   <br>
-                  <input type="submit" name="submit_quiz" Value="submit_quiz" class="btn btn-success m-auto d-block" />
+                  <input type="submit" name="submit_quiz" Value="submit" class="btn btn-success m-auto d-block" />
+                  </form>
                   
                   <script type= "text/javascript"> 
                      var c=0;
@@ -239,7 +239,7 @@
                                     ?>
                                                                   
                                     <?php
-                                    echo "Out of 3, You have attempt ".$checked_count." option."; ?>                                                                           
+                                    echo "Out of 25, You have attempt ".$checked_count." option."; ?>                                                                           
                                     <?php
                                     // Loop to store and display values of individual checked checkbox.
                                     $selected = $_POST['quizcheck'];

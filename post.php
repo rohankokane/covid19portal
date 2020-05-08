@@ -9,11 +9,11 @@
 		<div class="container">
 			<header class="clearfix">
 			
-			<form method="post" action="add-image.php">
-			<p align="right">
-            <button type="submit" class="btn btn-success">Add Image</button>
-	        </p>
-           </form>
+			<!-- <form method="post" action="add-image.php"> -->
+			<!-- <p align="right"> -->
+            <!-- <button type="submit" class="btn btn-success">Add Image</button> -->
+	        <!-- </p> -->
+            <!-- </form> -->
 		
 			
 			<h1><b>Image  Gallery</b></h1>
