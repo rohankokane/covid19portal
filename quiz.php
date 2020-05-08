@@ -65,6 +65,7 @@
 			display: flex;
 			flex-direction:row ; /*mobile friendly images size changes creating a flexbox*/
 			justify-content: space-evenly;
+         background-attachment:fixed;
 			/* align-items: center; */
 			}
 		.container{
@@ -151,6 +152,12 @@
       clear: both;
       display: table;
       }
+      @media (min-width: 480px) {
+         .container{
+            background-size:unset;
+         }
+         
+      }
       
       </style>
 <script type="text/javascript">
@@ -180,7 +187,7 @@ function noBack() { window.history.forward(); }
                   <p class="text-center" > <?php echo $_SESSION['username']; ?>, you have to select only one option out of four.</p>
                <br>
                
-               <form action="checked.php" method="post">
+               <form action="add-image.php" method="post">
                   <?php
                      for($i=1;$i<26;$i++){
                         $l = 1;
@@ -196,13 +203,13 @@ function noBack() { window.history.forward(); }
                            <div class="card">
                               <!-- question print -->
                               <p><?php echo $i ." . ". $row1['question']; ?> </p>
-
                                 <!-- image: -->
                                 <div class="text-center"> 
-                                    <img src="images/<?php echo $row1['img']; ?>" style="max-width:90vw; height:auto; max-height: 30vh;" class="img-responsive" alt="img01" >
+                                    <img src="images/<?php echo $row1['img']; ?>" style="max-width:90vw; height:auto; max-height: 40vh;" class="img-responsive" alt="img01" >
                                     <!-- <img src="data:image;base64,'.base64_encode($row1['img']).' " alt="Image" style="max-width:90vw; height:auto; max-height: 50vh;">'; -->
                               
                                 </div>
+                                <br>
                               <div class="radio-toolbar" >
                               <?php
                               $sql = "SELECT * FROM `answers` WHERE `q_ans` = $i";
@@ -323,9 +330,10 @@ function noBack() { window.history.forward(); }
             <br>
          </div>
          <br>
-         <footer>
-            <h5 class="text-center"> &copy2018 NSS RAIT </h5> 
-         </footer>
+         <br>
+         // <footer>
+         //    <h5 class="text-center"> &copy2018 NSS RAIT </h5> 
+         // </footer>
       </div>
 
 

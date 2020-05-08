@@ -20,7 +20,7 @@ session_start();
 		if (isset($_POST["submit_post"])){
 				$sql5 = "SELECT `puser_id` FROM `postuser` WHERE `email` = '$email' ";
 				$res = mysqli_query($conn, $sql5);
-				if (mysqli_num_rows($res) > 0) {
+				if(mysqli_num_rows($res) > 0) {
 					// output data of each row
 						while($row = mysqli_fetch_assoc($res)) {
 						$puser_id = $row["puser_id"];
@@ -77,9 +77,6 @@ session_start();
 				}
 				$message = "Post has been uploaded";
 			}
-
-
-
 	}
 	session_destroy();
 ?>
@@ -113,7 +110,7 @@ session_start();
 		@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
 
 		body{
-			background-color: #ffffff;
+			background-color: #fdfdfd;
 			/* height: 100vh; */
 		}
 		.site-header{
@@ -151,6 +148,8 @@ session_start();
 			}
 		#social-media{
 			background-color: #9f1c33;
+			padding: 10px;
+			margin-right: 10px;
 		}
 		/* img{
 			height:min-content;
@@ -276,6 +275,11 @@ session_start();
     font-size: 140%;
     width: 60px;
 }
+a{
+	text-decoration: none;
+}
+
+
 /* .icon-info:before {
     content: "\f05a";
 } */
@@ -300,7 +304,8 @@ session_start();
 			<div class="col-lg-6" id="buttons">
 					<!-- <h4 class="card-header text-center" style="background-color:#9f1c33; color: beige;"> Participant's Details </h4> -->
 					<button class="btn btn-1 btn-sep icon-info" id="btnq" onclick="window.location.href = 'quiz_form.php';"><i class="fas fa-server"></i>&nbsp Take Quiz</button>
-					<button class="btn btn-1 btn-sep icon-info" onclick="window.location.href = 'post_form.php';"><i class="fa fa-upload" style="font-size:24px"></i>&nbsp Upload Post</button>
+					<button class="btn btn-1 btn-sep icon-info" onclick="window.location.href = 'post_form.php';">Upload Post</button>	
+					<!-- <i class="fa fa-upload" style="font-size:24px padding:"0px"></i> -->
 					<!-- <div class="btnn" id="btnq">Take Quiz</div>
 					<div class="btnn" id="btnp">Upload Post</div> -->
 				</div>
@@ -352,19 +357,54 @@ session_start();
 	<br>
 	
 	<footer>
-		<div class="row">
-			<div class="col-6">
-				WHO: 
-				MOHW:
-				emergency helpline no:
-				PM cares:
-				CM cares (Mahrashtra state):
+		<style>
+			.fa {
+  padding: 15px;
+  font-size: 30px;
+  max-width: 70px;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-instagram {
+  /* background: #125688; */
+  background-image: -webkit-linear-gradient(left,#d4246d,#8517b8);
+  color: white;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+		</style>
+		<div class="row" style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-evenly; padding: 5px;">
+			<div class="ft-link">
+				<ul style="list-style-type:none;">
+				<li>WHO: <a href="https://www.who.com">www.who.com</a></li> 
+				<li>MOHFW: <a href="https://www.mohfw.gov.in">www.mohfw.gov.in</a></li>
+				<li>emergency helpline no:	+91 1123978046</li>
+				<li>PM cares: <a href="https://www.pmcares.gov.in">www.pmcares.gov.in</a></li>
+				<li>CM cares (Mahrashtra state): <a href="https://www.cmrf.maharashtra.gov.in">www.cmrf.maharashtra.gov.in</a></li>
+			</ul>
 			</div>
-			<div class="col-6" id="social-media">
-				<i class="fa-li fa fa-twitter"></i>
-				insta:
-				facebook:
-				Youtube:
+			<div class="ft-sc" id="social-media">
+				<!-- <i class="fa-li fa fa-twitter"></i> -->
+				<!-- <ul style="list-style-type:none;"> -->
+				<li class="fa fa-instagram" style="text-decoration: none; font-size: 30px;" onclick="window.location.href='https://www.instagram.com/sowrait/';"></li>
+				<li class="fa fa-facebook" onclick="window.location.href='https://www.facebook.com/sowrait/';"></li>
+				<!-- <li> -->
+				<li class="fa fa-youtube" onclick="window.location.href='https://www.youtube.com/channel/UCn1TWLgaXgbWQZZbmQYjBgw';"></li>
+				<!-- </li> -->
+				<!-- </ul> -->
 			</div>
 		</div>	
 	</footer>

@@ -21,4 +21,3 @@ $q = "INSERT INTO `user`(`name`, `email`, `phno`, `clgname`, `age`) VALUES ('$na
 mysqli_query($con,$q);
 	
 ?>
-

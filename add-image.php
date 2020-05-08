@@ -318,6 +318,12 @@ session_start();
         .file::after{
             content: " ";
         }
+        @media (min-width: 480px) {
+         .container{
+            background-size:unset;
+         }
+         
+      }
 
 /* .button:active span:after {
     transform: scale(0.99);
@@ -376,7 +382,6 @@ session_start();
         In this difficult time we are doing all we can to serve the nation. As our respected prime minister mentioned national service scheme volunteers to come forward and contribute in this fight against the pandemic.
         If you or your unit is also conducting any such activities we invite you all to post your work for on this wall.
         </p>
-        <?php echo $_SESSION['username']; ?>
     </div>
 
     <div class="container">
