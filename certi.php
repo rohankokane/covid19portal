@@ -44,16 +44,3 @@
         exit();
         
     ?>
-
-
-
-                <!--for user_id in database     
-                      <?php
-
-                ?> -->
-
-
-
-
-<!--   for back button
-                     -->
