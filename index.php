@@ -12,10 +12,9 @@ session_start();
 ?>
 <?php
 	$message = "";
-	$name = $_SESSION['username'];
-	$email = $_SESSION['email'];
     if (isset($_POST["submit_post"]) || isset($_POST["submit_image"]) )
-    {	
+    {	$name = $_SESSION['username'];
+	$email = $_SESSION['email'];
 		if (isset($_POST["submit_post"])){
 				$sql5 = "SELECT `user_id` FROM `postuser` WHERE `email` = '$email' ";
 			}
@@ -53,7 +52,7 @@ session_start();
         }
         $message = "Post has been uploaded";
 	}
-	
+	session_destroy();
 ?>
 <!doctype html>
 <html lang="en">

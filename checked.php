@@ -87,10 +87,15 @@ session_start();
 	         <?php
          $counter = 0;
          $Resultans = 0;
-            if(isset($_POST['submit'])){
+            if(isset($_POST['submit_quiz'])){
             if(!empty($_POST['quizcheck'])) {
             // Counting number of checked checkboxes.
             $checked_count = count($_POST['quizcheck']);
+            if($checked_count<25)
+            {
+              header('location:quiz.php');
+              
+            }
             // print_r($_POST);
             ?>
 
@@ -102,15 +107,19 @@ session_start();
           	
             <?php
             // Loop to store and display values of individual checked checkbox.
+            if(isset($_POST['quizcheck'])){
             $selected = $_POST['quizcheck'];
-            
+            }
+            if (count($selected)<25)
+            {
+              
+            }
             $q1= " select q_ans from questions ";
             $ansresults = mysqli_query($con,$q1);
             $i = 1;
             while($rows = mysqli_fetch_array($ansresults)) {
               // print_r($rows);
             	$flag = $rows['q_ans'] == $selected[$i];
-            	
             			if($flag){
             				// echo "correct ans is ".$rows['ans']."<br>";				
             				$counter++;

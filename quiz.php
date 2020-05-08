@@ -153,10 +153,11 @@
       }
       
       </style>
-      <SCRIPT type="text/javascript">
-    window.history.forward();
-    function noBack() { window.history.forward(); }
-</SCRIPT>
+<script type="text/javascript">
+
+window.history.forward();
+function noBack() { window.history.forward(); }
+</script>
    </head>
    <body onload="noBack();" 
     onpageshow="if (event.persisted) noBack();">
@@ -176,9 +177,10 @@
             </div>
             <br>
             <!-- <div class="col-lg-8 d-block m-auto bg-light quizsetting "> -->
-                  <p class="text-center" > <?php echo $_SESSION['username']; ?>, you have to select only one out of 4. Best of Luck </p>
+                  <p class="text-center" > <?php echo $_SESSION['username']; ?>, you have to select only one option out of four.</p>
                <br>
-               <form action="add-image.php" method="post">
+               
+               <form action="checked.php" method="post">
                   <?php
                      for($i=1;$i<26;$i++){
                         $l = 1;
@@ -222,9 +224,23 @@
                      } //for loop end
                      ?>
                   <br>
-                  <input type="submit" name="submit_quiz" Value="submit" class="btn btn-success m-auto d-block" />
+                  <input type="submit" name="submit_quiz" Value="submit" onsubmit="return checkattempted();" class="btn btn-success m-auto d-block" />
                   </form>
-                  
+                  <script>function checkattempted(){
+                     // alert("HELLO");
+                     var radios=[]
+                     radios = document.querySelectorAll('input[type="radio"]:checked');
+            
+                     // var value = radios.length>0? radios[0].value: null;
+                     if(radios.length==25){
+                        returnToPreviousPage();
+                     return true;
+                     }
+                     else{
+                     return false;
+                     }
+                  }
+               </script>
                   <script type= "text/javascript"> 
                      var c=0;
                      function pop(){
